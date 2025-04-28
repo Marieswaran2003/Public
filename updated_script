@@ -182,7 +182,7 @@ systemctl start httpd
 
 # Step 7: Copy project files to /var/www/html/
 echo "Copying all files to /var/www/html/..."
-cp -r ~/* /var/www/html/
+cp -r ~/Public/* /var/www/html/
 
 echo "All tasks completed successfully. Good luck!"
 
