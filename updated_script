@@ -75,6 +75,11 @@ echo "File created: /home/training18/projects/nginx/html/index.html"
 dnf install container-tools -y
 dnf install nginx -y
 
+# Step 5: Login to Docker.io registry on the remote workstation
+echo "Logging into docker.io registry on training18@workstation..."
+ssh training18@workstation "echo 'redhat321' | podman login docker.io -u admin034 --password-stdin"
+
+
 echo "Deploying Nginx container..."
 ssh training18@workstation podman pull docker.io/library/nginx
 ssh training18@workstation podman pull quay.io/myacme/welcome
@@ -165,9 +170,7 @@ EOF
 # Start the containers using Podman Compose
 ssh training18@workstation podman-compose up -d
 
-# Step 5: Login to Docker.io registry
-echo "Logging into docker.io registry..."
-echo "redhat321" | podman login docker.io -u admin034 --password-stdin
+# 
 
 # Step 6: Install httpd, enable and start the service
 echo "Installing httpd server..."
