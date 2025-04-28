@@ -1,0 +1,59 @@
+<html>
+<head>
+<body style="background-color: lightyellow;">
+<form method=post>
+<h1><center>EX188 MOCK EXAMINATION</center></h1>
+
+<center>&nbsp; &nbsp; &nbsp; &nbsp; <img src="redhat1.jpg" border="1" height="120" width="150"> </center><br>
+<h4><center> &nbsp &nbsp &nbsp &nbsp NOTE: CANDIDATE PLEASE CHECK THE BOX AFTER COMPLETING EACH QUESTION FOR YOUR EASY REFERENCE. </center></h4>
+<h2><center> &nbsp &nbsp &nbsp &nbsp QUESTION No.5 </center></h2>
+<table align=center size=120 border=5 style="background-color: lightyellow;"><tr><td><br>
+<font size=4>
+&nbsp; &nbsp; ACME cooperation want to use the container technology, they want to run multiple application as a container. &nbsp&nbsp <br> <br>
+&nbsp; &nbsp; <b>Task:</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Create a network called acme-wp <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Create a volume named acme-wp-backend <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Create another volume named acme-wp-app <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Create another volume named acme-wordpress-data <br> <br>
+
+&nbsp; &nbsp; <b>acme-wp-db:</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Uses the image quay.io/myacme/mariadb:1.0 <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The container must be named mariadb. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The mariadb container should be part of the acme-wp network. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Map the volume acme-wp-backend to the container at the /bitnami/mariadb <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Deploy the container to run persistently. <br> <br>
+
+&nbsp; &nbsp; <b>acme-nginx:</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Uses the image quay.io/myacme/nginx. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The container must be named acme-wp-app. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Add the container to acme-wp network. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Map the volume acme-wp-app to /etc/nginx inside the container. <br> <br>
+
+&nbsp; &nbsp; <b>acme-wp-nginx:</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Uses the image quay.io/myacme/wordpress:1.0 <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The Container must be named acme-wordpress. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Add the container to acme-wp network. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Map the volume acme-wordpress-data to the container at the /bitnami/wordpress. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The container’s port 8080 must be exposed on local port 8004 <br>
+&nbsp; &nbsp; &nbsp; &nbsp; <b>Note:</b> Your Containers should persist to run after configuration. <br> <br>
+
+&nbsp; &nbsp; <b>Testing your Work:</b> <br> <br>
+
+&nbsp; &nbsp; Once container deployed it should be available on the following url, <br> <br>
+<font size=4> <center> <a href="http://localhost:8004">http://localhost:8004</a> </center> <br>
+
+&nbsp; &nbsp; The Response should show wordpress as below, <br>
+<h2> &nbsp; &nbsp; &nbsp; Minidblown: a blog about philosophy. </h2>
+<font size=4> &nbsp; &nbsp; &nbsp; &nbsp; <b>Hello world!</b>  <br>
+<font size=4> &nbsp; &nbsp; &nbsp; &nbsp; Welcome to WordPress. This is your first post. <br>
+
+</font><br>
+<inop></table><br>
+<center><a href="javascript:history.back()"><img src="BACK.png" height="60px" width="60px" border="0"></a></center>
+</body>
+</html>
+

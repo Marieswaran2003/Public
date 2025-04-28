@@ -1,0 +1,63 @@
+<html>
+<head>
+<body style="background-color: lightyellow;">
+<form method=post>
+<h1><center>EX188 MOCK EXAMINATION</center></h1>
+
+<center>&nbsp; &nbsp; &nbsp; &nbsp; <img src="redhat1.jpg" border="1" height="120" width="150"> </center><br>
+<h4><center> &nbsp &nbsp &nbsp &nbsp NOTE: CANDIDATE PLEASE CHECK THE BOX AFTER COMPLETING EACH QUESTION FOR YOUR EASY REFERENCE. </center></h4>
+<h2><center> &nbsp &nbsp &nbsp &nbsp QUESTION No.4 </center></h2>
+<table align=center size=120 border=5 style="background-color: lightyellow;"><tr><td>
+<br>
+<font size=4>
+&nbsp; &nbsp; ACME cooperation want to use the container technology, they want to create a custom container to run their application &nbsp&nbsp <br> <br>
+&nbsp; &nbsp; <b>Task:</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Build a custom image, utilize the initial file available at ~/projects/mariadb/acme-containerfile <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Base Image for the Container file mariadb:latest <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The container file should have build argument as below,  <br> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>ACME_MARIADB_PASSWORD</b> <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>ACME_MARIADB_DATABASE</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The container file should have environment variables as below,  <br> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>MARIADB_ROOT_PASSWORD</b> <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>MARIADB_DATABASE</b> <br> <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The environment variable should use build argument as below,  <br> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>MARIADB_ROOT_PASSWORD use ACME_MARIADB_PASSWORD</b> <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <b>MARIADB_DATABASE use ACME_MARIADB_DATABASE</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Use the Build argument should fetch it from user at build,  <br> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Variable name: <b>ACME_MARIADB_PASSWORD</b> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Variable value: <b>acme</b> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Variable name: <b>ACME_MARIADB_DATABASE</b> <br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Variable value: <b>acme</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The Image must be locally available and tag as acme-mariadb:latest. <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Push the image to registry as acme:5000/acme-mariadb:latest <br> <br>
+
+&nbsp; &nbsp; <b>amce-db-exporter:</b> <br> <br>
+
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Build a custom image, utilize the initial file available at ~/projects/mariadb/acme_export_containerfile <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Base Image for the Container file mariadb:latest <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Copy the file from scripts/export.sh in to /scripts/export.sh in container <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Working directory is /scripts <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Run export.sh script <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> The image must be locally available and tag as acme-mariadb-export:latest <br>
+&nbsp; &nbsp; <input type=checkbox> <a style=text-decoration:none;> Push the image to registry as acme:5000/acme-mariadb-export:latest <br> <br>
+
+&nbsp; &nbsp; <b>Testing your Work:</b> <br> <br>
+
+&nbsp; &nbsp; a) Run a test container named acme-mariadb-test using the container image available at acme:5000/acme-mariadb:latest <br>
+&nbsp; &nbsp; b) Test container should be in running state once initialized and persist to run. <br> <br>
+&nbsp; &nbsp; c) Run a test container named acme-mariadb-exporter using the container image available at acme:5000/acme-mariadb-export:latest &nbsp; &nbsp; <br> 
+&nbsp; &nbsp; &nbsp; &nbsp; using the local map from path ~/workspace/acme-mariadb-db/export to /home in container. <br> <br>
+&nbsp; &nbsp; d) Once container execution is done, you should able to read the mysql dump file at the following <br>
+&nbsp; &nbsp; &nbsp; &nbsp; location ~/workspace/acme-mariadb-db/export/acmeMysql.sql <br>
+&nbsp; &nbsp; e) You can able to read the mysql dump with any reader. <br> <br>
+
+</font><br>
+<inop></table><br>
+<center><a href="javascript:history.back()"><img src="BACK.png" height="60px" width="60px" border="0"></a></center>
+</body>
+</html>
+

@@ -1,0 +1,196 @@
+# Ensure the 'training18' user exists
+
+if ! id "training18" &>/dev/null; then
+
+	    echo "Creating user 'training18'..."
+
+	        useradd -m training18
+
+		    echo "User 'training18' created successfully."
+
+	    else
+
+		        echo "User 'training18' already exists."
+
+fi
+
+rm -rf /home/training18/*
+
+# Ensure the necessary directories exist and permissions are correct
+
+echo "Creating directory structure..."
+
+mkdir -p /home/training18/projects/nginx/html/
+mkdir -p /home/training18/projects/mariadb/
+mkdir -p /home/training18/projects/mariadb/exports
+mkdir -p /home/training18/projects/mariadb/scripts
+
+chown -R training18:training18 /home/training18/projects/nginx/html/
+chown -R training18:training18 /home/training18/projects/mariadb/
+chown -R training18:training18 /home/training18/projects/mariadb/exports
+chown -R training18:training18 /home/training18/projects/mariadb/scripts
+
+
+cat > /home/training18/projects/mariadb/scripts/export.sh <<EOF
+mysql -u root -pacme mysql > /home/app.sql
+EOF
+
+
+chown training18:training18 /home/training18/projects/mariadb/scripts/export.sh
+chmod +x  /home/training18/projects/mariadb/scripts/export.sh
+chmod 755  /home/training18/projects/mariadb/scripts/export.sh
+chmod 755  /home/training18/projects/mariadb/scripts/
+
+
+
+cat > /home/training18/projects/mariadb/acme_containerfile <<EOF
+
+#add the base images
+
+#add the arguments
+
+#add the environement variable 
+
+EOF
+
+chown training18:training18 /home/training18/projects/mariadb/acme_containerfile
+
+cat > /home/training18/projects/mariadb/acme_export_containerfile <<EOF
+
+#add containerfile
+
+EOF
+
+chown training18:training18 /home/training18/projects/mariadb/acme_export_containerfile
+echo "Directory created and ownership set: /home/training18/projects/nginx/index.html"
+
+echo "Creating index.html file..."
+echo "<html><body><h1>Welcome to Nginx</h1></body></html>" > /home/training18/projects/nginx/html/index.html
+chown training18:training18 /home/training18/projects/nginx/html/index.html
+echo "File created: /home/training18/projects/nginx/html/index.html"
+
+
+# Step 2: Deploy the Nginx container
+
+dnf install container-tools -y
+dnf install nginx -y
+
+echo "Deploying Nginx container..."
+ssh training18@workstation podman pull docker.io/library/nginx
+ssh training18@workstation podman pull quay.io/myacme/welcome
+ssh training18@workstation podman pull docker.io/library/mariadb
+ssh training18@workstation podman pull quay.io/myacme/mariadb:1.0
+ssh training18@workstation podman pull quay.io/myacme/nginx
+ssh training18@workstation podman pull quay.io/myacme/wordpress:1.0
+
+
+# Define variables
+
+
+mkdir -p /home/training18/projects/nginx_web/html
+mkdir -p /home/training18/projects/nginx_web/conf
+
+# Change ownership to root
+echo "Changing ownership of directories to root..."
+chown -R training18:training18 /home/training18/projects/nginx_web/html/
+chown -R training18:training18 /home/training18/projects/nginx_web/conf/
+rm -rf /home/training18/projects/nginx_web/index.html
+echo "<html><body><h1>Im running successfully man all the best for your exams" > /home/training18/projects/nginx_web/html/index.html
+# Step 1: Create the default.conf for Nginx
+echo "Creating default.conf for Nginx"
+cat > /home/training18/projects/nginx_web/conf/default.conf <<EOF
+server {
+    listen       80;
+    server_name  localhost;
+
+    # Define the root directory where the HTML files are mounted
+    root   /usr/share/nginx/html;
+
+    # Default page for the server
+    index  index.html;
+
+    # Main location block to serve files
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF
+
+cat > /home/training18/podman-compose.yml <<EOF
+version: '3.9'
+services:
+  acme-wp-db:
+    image: quay.io/myacme/mariadb:1.0
+    container_name: mariadb
+    networks:
+      - acme-wp-net
+    volumes:
+      - acme-wp-backend:/bitnami/mariadb
+    restart: always
+
+  acme-nginx:
+    image: quay.io/myacme/nginx
+    container_name: acme-wp-app
+    networks:
+      - acme-wp-net
+    volumes:
+      - acme-wp-app:/etc/nginx
+    restart: always
+
+  acme-wp-nginx:
+    image: quay.io/myacme/wordpress:1.0
+    container_name: acme-wordpress
+    networks:
+      - acme-wp-net
+    volumes:
+      - acme-wordpress-data:/bitnami/wordpress
+    ports:
+      - "8004:8080"
+      - "8443:8443"
+    restart: always
+
+networks:
+  acme-wp-net:
+    external: true
+
+volumes:
+  acme-wp-backend:
+    external: true
+  acme-wp-app:
+    external: true
+  acme-wordpress-data:
+    external: true
+EOF
+
+# Start the containers using Podman Compose
+ssh training18@workstation podman-compose up -d
+
+# Step 5: Login to Docker.io registry
+echo "Logging into docker.io registry..."
+echo "redhat321" | podman login docker.io -u admin034 --password-stdin
+
+# Step 6: Install httpd, enable and start the service
+echo "Installing httpd server..."
+dnf install httpd -y
+
+echo "Enabling and starting httpd service..."
+systemctl enable httpd
+systemctl start httpd
+
+# Step 7: Copy project files to /var/www/html/
+echo "Copying all files to /var/www/html/..."
+cp -r ~/* /var/www/html/
+
+echo "All tasks completed successfully. Good luck!"
+
+
+# Step 2: Deploy the Nginx container in detached mode
+echo "Reloading nginx configuration"
+
+# Step 4: Final check to verify the container is running
+echo "ALL THE BEST"
+
+
+
+
+
